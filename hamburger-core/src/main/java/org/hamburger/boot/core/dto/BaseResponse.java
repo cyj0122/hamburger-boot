@@ -25,6 +25,14 @@ public class BaseResponse<T> {
         return response;
     }
 
+    public static BaseResponse<?> buildFailure(String errCode, String errMsg) {
+        BaseResponse<?> response = new BaseResponse<>();
+        response.setSuccess(false);
+        response.setErrCode(errCode);
+        response.setErrMsg(errMsg);
+        return response;
+    }
+
     public static <T> BaseResponse<T> of(T data) {
         BaseResponse<T> response = new BaseResponse<>();
         response.setSuccess(true);

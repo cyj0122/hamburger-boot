@@ -12,6 +12,7 @@
         <module>hamburger-core</module>
         <module>hamburger-logger</module>
         <module>hamburger-example-simple</module>
+        <module>hamburger-starter</module>
     </modules>
 
     <properties>
@@ -28,6 +29,24 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.hamburger.boot</groupId>
+                <artifactId>hamburger-starter</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hamburger.boot</groupId>
+                <artifactId>hamburger-core</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hamburger.boot</groupId>
+                <artifactId>hamburger-logger</artifactId>
+                <version>${version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>

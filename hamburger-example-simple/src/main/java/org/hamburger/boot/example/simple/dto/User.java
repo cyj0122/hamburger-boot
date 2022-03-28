@@ -1,6 +1,5 @@
 package org.hamburger.boot.example.simple.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
