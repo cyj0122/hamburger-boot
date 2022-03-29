@@ -5,4 +5,5 @@ public interface ICodeEnum {
     String getErrCode();
 
     String getErrMsg();
+
 }

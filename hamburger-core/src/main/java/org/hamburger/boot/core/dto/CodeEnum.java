@@ -1,15 +1,14 @@
-package org.hamburger.boot.example.simple.common;
+package org.hamburger.boot.core.dto;
 
-import org.hamburger.boot.core.dto.ICodeEnum;
-
-public enum ResultCode implements ICodeEnum {
-    SYS_ERROR("1001", "业务异常");
+public enum CodeEnum implements ICodeEnum {
+    SYS_ERROR("500", "系统异常"),
+    CLIENT_ERROR("400", "客户端请求异常");
 
     private final String errCode;
 
     private final String errMsg;
 
-    ResultCode(String errCode, String errMsg) {
+    CodeEnum(String errCode, String errMsg) {
         this.errCode = errCode;
         this.errMsg = errMsg;
     }
