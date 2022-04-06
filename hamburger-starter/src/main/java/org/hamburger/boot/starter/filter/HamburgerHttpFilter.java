@@ -1,7 +1,10 @@
 package org.hamburger.boot.starter.filter;
 
 import com.google.common.collect.ImmutableSet;
+import org.hamburger.boot.core.constant.Constants;
+import org.hamburger.boot.core.utils.TraceIdGenerator;
 import org.hamburger.boot.starter.context.GlobalContext;
+import org.slf4j.MDC;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -17,12 +20,20 @@ public class HamburgerHttpFilter implements Filter {
             throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         Enumeration<String> headerNames = httpServletRequest.getHeaderNames();
+        String traceId = null;
         while (headerNames.hasMoreElements()) {
-           String key = headerNames.nextElement();
-           if (!HTTP_HEADERS.contains(key.toLowerCase())) {
-               GlobalContext.put(key, httpServletRequest.getHeader(key));
-           }
+            String key = headerNames.nextElement();
+            if (!HTTP_HEADERS.contains(key.toLowerCase())) {
+                GlobalContext.put(key, httpServletRequest.getHeader(key));
+            }
+            if (key.equalsIgnoreCase(Constants.TRACE_ID)) {
+                traceId = httpServletRequest.getHeader(key);
+            }
         }
+        if (traceId == null || traceId.isEmpty()) {
+            traceId = TraceIdGenerator.generate();
+        }
+        MDC.put(Constants.TRACE_ID, traceId);
         filterChain.doFilter(servletRequest, servletResponse);
     }
 

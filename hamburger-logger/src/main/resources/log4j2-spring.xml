@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+
+    <Properties>
+        <Property name="LOG_PATTERN">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %X{trace_id} [%t] %class{36}(%L): %msg%xEx%n
+        </Property>
+        <Property name="FILE_PATH">
+            ./logs
+        </Property>
+        <Property name="FILE_NAME">
+            app
+        </Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level} %style{%pid}{Magenta} --- %X{trace_id} [%20t] %style{%c{5}}{Cyan} : %msg%xEx%n" disableAnsi="false" noConsoleNoAnsi="false"/>
+        </Console>
+
+        <RollingFile name="Info" fileName="${FILE_PATH}/${FILE_NAME}.log" append="true" filePattern="${FILE_PATH}/${FILE_NAME}.log.%d{yyyy-MM-dd}.%i">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <OnStartupTriggeringPolicy minSize="1073741824"/>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="1024MB"/>
+            </Policies>
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <DefaultRolloverStrategy max="102400"/>
+        </RollingFile>
+
+        <RollingFile name="Error" fileName="${FILE_PATH}/${FILE_NAME}-err.log" append="true" filePattern="${FILE_PATH}/${FILE_NAME}-err.log.%d{yyyy-MM-dd}.%i">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <OnStartupTriggeringPolicy minSize="1073741824"/>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="1024MB"/>
+            </Policies>
+            <Filters>
+                <ThresholdFilter level="ERROR"/>
+            </Filters>
+            <DefaultRolloverStrategy max="102400"/>
+        </RollingFile>
+
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="Info"/>
+            <AppenderRef ref="Error"/>
+        </Root>
+    </Loggers>
+</Configuration>
