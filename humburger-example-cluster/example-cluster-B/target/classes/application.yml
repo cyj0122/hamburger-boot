@@ -1,0 +1,10 @@
+server:
+  port: 8091
+
+spring:
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+  application:
+    name: shopping-service

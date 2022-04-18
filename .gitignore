@@ -1,5 +1,7 @@
 .idea
 */target/
+*/logs/
+/logs/
 
 # Compiled class file
 *.class
