@@ -13,9 +13,12 @@
         <module>hamburger-logger</module>
         <module>hamburger-example-simple</module>
         <module>hamburger-starter</module>
-        <module>humburger-example-cluster</module>
-        <module>humburger-example-cluster/example-cluster-A</module>
-        <module>humburger-example-cluster/example-cluster-B</module>
+        <module>hamburger-example-cluster</module>
+        <module>hamburger-example-cluster/example-cluster-A</module>
+        <module>hamburger-example-cluster/example-cluster-B</module>
+        <module>hamburger-example-cluster/example-cluster-A-api</module>
+        <module>hamburger-example-cluster/example-cluster-B-api</module>
+        <module>hamburger-api</module>
     </modules>
 
     <properties>
@@ -50,6 +53,18 @@
             <dependency>
                 <groupId>org.hamburger.boot</groupId>
                 <artifactId>hamburger-logger</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hamburger.boot</groupId>
+                <artifactId>example-cluster-A-api</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hamburger.boot</groupId>
+                <artifactId>example-cluster-B-api</artifactId>
                 <version>${version}</version>
             </dependency>
 
