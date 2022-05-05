@@ -1,4 +1,4 @@
-package org.hamburger.boot.api.annotation;
+package org.hamburger.boot.api.core;
 
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Indexed;
@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Indexed
-public @interface HamburgerClient {
+public @interface RetrofitClient {
 
     @AliasFor("name")
     String value() default "";
@@ -22,4 +22,5 @@ public @interface HamburgerClient {
     String url() default "";
 
     Class<?>[] configuration() default {};
+
 }
